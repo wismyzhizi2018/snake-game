@@ -1,0 +1,249 @@
+/* 贪吃蛇游戏样式表 */
+
+/* 全局重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 页面主体样式 */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* 游戏容器 */
+.game-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 100%;
+}
+
+/* 游戏标题 */
+.game-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.game-header h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+/* 分数板 */
+.score-board {
+    display: inline-block;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* 游戏区域 */
+.game-area {
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 游戏画布 */
+#gameCanvas {
+    background: #1a1a2e;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+    display: block;
+}
+
+/* 游戏覆盖层 */
+.game-overlay {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 10;
+}
+
+.game-overlay.hidden {
+    display: none;
+}
+
+.game-overlay h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #4ecca3;
+}
+
+.game-overlay p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    color: #ccc;
+}
+
+/* 按钮样式 */
+button {
+    padding: 12px 30px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+#startBtn {
+    background: linear-gradient(135deg, #4ecca3 0%, #45b393 100%);
+    color: white;
+}
+
+#startBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(78, 204, 163, 0.5);
+}
+
+#pauseBtn {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+    color: white;
+}
+
+#pauseBtn:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(243, 156, 18, 0.5);
+}
+
+#restartBtn {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+}
+
+#restartBtn:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(231, 76, 60, 0.5);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 游戏控制按钮容器 */
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* 游戏说明 */
+.game-instructions {
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
+    line-height: 1.6;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.game-instructions p {
+    margin: 5px 0;
+}
+
+/* 响应式设计 - 平板 */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 20px;
+    }
+    
+    .game-header h1 {
+        font-size: 2em;
+    }
+    
+    .game-overlay {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+/* 响应式设计 - 手机 */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .game-container {
+        padding: 15px;
+    }
+    
+    .game-header h1 {
+        font-size: 1.5em;
+    }
+    
+    .score-board {
+        font-size: 1em;
+        padding: 6px 15px;
+    }
+    
+    #gameCanvas {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .game-overlay {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .game-overlay h2 {
+        font-size: 1.5em;
+    }
+    
+    .game-overlay p {
+        font-size: 0.9em;
+    }
+    
+    .game-controls button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    
+    .game-instructions {
+        font-size: 0.8em;
+        padding: 10px;
+    }
+}
+
+/* 小屏幕手机 */
+@media (max-width: 350px) {
+    #gameCanvas {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .game-overlay {
+        width: 280px;
+        height: 280px;
+    }
+}
